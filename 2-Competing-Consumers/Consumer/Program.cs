@@ -11,10 +11,10 @@ using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
 channel.QueueDeclare(
-    queue: "letterbox", 
-    durable: false, 
-    exclusive: false, 
-    autoDelete: false, 
+    queue: "letterbox",
+    durable: false,
+    exclusive: false,
+    autoDelete: false,
     arguments: null);
 
 channel.BasicQos(
@@ -27,7 +27,7 @@ var consumer = new EventingBasicConsumer(channel);
 
 var random = new Random();
 
-consumer.Received += (model, ea) => 
+consumer.Received += (model, ea) =>
 {
     var processingTime = random.Next(1, 6);
 
@@ -46,8 +46,10 @@ consumer.Received += (model, ea) =>
 };
 
 channel.BasicConsume(
-    queue: "letterbox", 
-    autoAck: false, 
+    queue: "letterbox",
+    autoAck: false,
     consumer: consumer);
+
+Console.WriteLine("Consuming...");
 
 Console.ReadKey();

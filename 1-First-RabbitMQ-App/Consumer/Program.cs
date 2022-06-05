@@ -30,4 +30,6 @@ channel.BasicConsume(
     autoAck: true,
     consumer: consumer);
 
+Console.WriteLine("Consuming...");
+
 Console.ReadKey();
